@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,5 +16,12 @@ public class VideoService {
 	
 	public List<Video> getVideos(){
 		return videos;
+	}
+	
+	public Video create(Video newVideo) {
+		List<Video> extend = new ArrayList<>(videos);
+		extend.add(newVideo);
+		this.videos = List.copyOf(extend);
+		return newVideo;
 	}
 }
