@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class VideoService {
 	Video[] videoArray = { new Video("Need HELP with your SPRING BOOT 3 App?"),
@@ -19,9 +18,10 @@ public class VideoService {
 	}
 	
 	public Video create(Video newVideo) {
-		List<Video> extend = new ArrayList<>(videos);
+		List <Video> extend = new ArrayList<>(videos);
 		extend.add(newVideo);
 		this.videos = List.copyOf(extend);
 		return newVideo;
 	}
+
 }

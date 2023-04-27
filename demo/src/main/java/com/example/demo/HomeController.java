@@ -13,20 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class HomeController {
 	private final VideoService videoService;
 	
-	 public HomeController(VideoService videoService) {
-		 this.videoService = videoService;
-	 }
-	 
-	 @GetMapping("/")
-	 public String index(Model model) {
-		 model.addAttribute("videos", videoService.getVideos());
-		 return "index";
-	 }
-	 
-
-	 @PostMapping("/new-video")
-	 public String newVideo(@ModelAttribute Video newVideo){
-		 videoService.create(newVideo);
-		 return "redirect:/";
-	 }
+	public HomeController(VideoService videoService) {
+		this.videoService = videoService;
+	}
+	
+	@GetMapping("/")
+	public String index(Model model) {
+		model.addAttribute("videos", videoService.getVideos());
+		return "index";
+	}	
+	
+	@PostMapping("/new-video")
+	public String newVideo(@ModelAttribute Video newVideo) {
+		videoService.create(newVideo);
+		return "redirect:/";
+	}
 }
