@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,10 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String index(Model model) {
+		List<VideoEntity> videoList = videoService.getVideos();
+		for (VideoEntity video : videoList) {
+		    System.out.println(video.getName());
+		}
 		model.addAttribute("videos", videoService.getVideos());
 		return "index";
 	}	
@@ -29,8 +34,22 @@ public class HomeController {
 	}
 	
 	@PostMapping("/new-video")
-	public String newVideo(@ModelAttribute Video newVideo) {
-		videoService.create(newVideo);
+	public String newVideo(@ModelAttribute Video newVideo, Authentication authentication) {
+		videoService.create(newVideo, authentication.getName());
 		return "redirect:/";
+	}
+	
+	@PostMapping("/multi-field-search")
+	public String multiFieldSearch(@ModelAttribute VideoSearch search, Model model) {
+		List<VideoEntity> searchResults = videoService.search(search);
+		model.addAttribute("videos", searchResults);
+		return "index";
+	}
+	
+	@PostMapping("/universal-search")
+	public String universalSearch(@ModelAttribute UniversalSearch search, Model model) {
+		List<VideoEntity> searchResults = videoService.search(search);
+		model.addAttribute("videos", searchResults);
+		return "index";
 	}
 }

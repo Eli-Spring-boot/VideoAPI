@@ -18,13 +18,14 @@ public class ApiController {
 	
 	@GetMapping("/api/videos")
 	//@CrossOrigin(origins="http://localhost:3000")
-	public List<Video> all(){
+	public List<VideoEntity> all(){
 		return videoService.getVideos();
 	}
-	
+
+	/*
 	@PostMapping("/api/videos")
 	//@CrossOrigin(origins="http://localhost:3000")
 	public Video newVideo(@RequestBody Video newVideo) {
 		return videoService.create(newVideo);
-	}
+	}*/
 }
