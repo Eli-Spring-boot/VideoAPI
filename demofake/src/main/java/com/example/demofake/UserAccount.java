@@ -1,4 +1,5 @@
-package com.example.demo;
+package com.example.demofake;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class UserAccount {
 @Id
 @GeneratedValue
 private Long id;
-public String username;
+private String username;
 private String password;
 private String role; 
 @ElementCollection(fetch = FetchType.EAGER)

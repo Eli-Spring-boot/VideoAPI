@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demofake;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -34,7 +34,7 @@ public class SecurityConfig {
 	SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
 		.requestMatchers("/login").permitAll()
-		.requestMatchers("/delete/**").permitAll()
+		//.requestMatchers("/delete/**").permitAll()
 		.requestMatchers("/","/search").authenticated()
 		.requestMatchers(HttpMethod.GET, "/api/**")
 		.authenticated()

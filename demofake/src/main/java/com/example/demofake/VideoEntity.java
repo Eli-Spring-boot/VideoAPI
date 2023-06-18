@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demofake;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 @Entity
 public class VideoEntity {
 	private @Id @GeneratedValue Long id;
-	public String username;
+	private String username;
 	private String name;
 	private String description;
 	

@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demofake;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,11 +15,6 @@ import org.springframework.util.StringUtils;
 public class VideoService {
 	private final VideoRepository repository;
 	
-	Video[] videoArray = { new Video("Need HELP with your SPRING BOOT 3 App?",""),
-            new Video("Don't do THIS to your own CODE!",""),
-            new Video("SECRETS to fix BROKEN CODE!","") };
-	List<Video> videos = Arrays.asList(videoArray);
-	
 	public VideoService(VideoRepository repository) {
 		this.repository = repository;
 	}
@@ -28,12 +23,21 @@ public class VideoService {
 		return repository.findAll();
 	}
 	
+	public void delete(Long videoId) {
+		repository.findById(videoId).map(videoEntity->{
+			repository.delete(videoEntity);
+			return true;
+		})
+		.orElseThrow(()->new RuntimeException("No video at " + videoId));
+	}
+	
+	/*
 	public VideoEntity create(Video newVideo, String username) {
 		return repository.saveAndFlush(new VideoEntity(username, newVideo.name(), newVideo.description()));
 		/*List <Video> extend = new ArrayList<>(videos);
 		extend.add(newVideo);
 		this.videos = List.copyOf(extend);
-		return newVideo;*/
+		return newVideo;
 	}
 	
 	public List<VideoEntity> search(UniversalSearch search){
@@ -64,12 +68,5 @@ public class VideoService {
 		
 		return Collections.emptyList();
 	}
-	
-	public void delete(Long videoId) {
-		repository.findById(videoId).map(videoEntity->{
-			repository.delete(videoEntity);
-			return true;
-		})
-		.orElseThrow(()->new RuntimeException("No video at " + videoId));
-	}
+	*/
 }

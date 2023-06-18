@@ -1,0 +1,18 @@
+<h1>Greetings Learning Spring Boot 3.0 fans!</h1>
+
+<p>
+  In this chapter, we are learning how to make
+  a web app using Spring Boot 3.0
+</p>
+
+<a href="/">Go to Homepage</a>
+ <ul>
+        {{#videos}}
+        <li>{{name}}
+        <form action="/delete/videos/{{id}}" method="post">
+        <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}">
+        <button type="submit">Delete</button>
+        </form>
+        </li>
+        {{/videos}}
+ </ul>
