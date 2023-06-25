@@ -4,6 +4,16 @@
     <title>Home</title>
 </head>
 <body>
+	<h3>User Profile</h3>
+	<ul>
+	    <li>Username: {{authentication.name}}</li>
+	    <li>Authorities: {{authentication.authorities}}</li>
+	</ul>
+	<form action="/logout" method="post">
+	    <input type="hidden" name="{{_csrf.parameterName}}"
+	      value="{{_csrf.token}}">
+	    <button type="submit">Logout</button>
+	</form>
     <h1>Welcome to our video collection!</h1>
     <ul>
         {{#videos}}

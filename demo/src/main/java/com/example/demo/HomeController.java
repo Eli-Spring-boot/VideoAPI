@@ -18,14 +18,18 @@ public class HomeController {
 	public HomeController(VideoService videoService) {
 		this.videoService = videoService;
 	}
+	/*22
+	@GetMapping
+	public String index(Model model, Authentication authentication) {
+		model.addAttribute("videos", videoService.getVideos());
+		model.addAttribute("authentication", authentication);
+		return "index";
+	}*/
 	
 	@GetMapping("/")
-	public String index(Model model) {
-		List<VideoEntity> videoList = videoService.getVideos();
-		for (VideoEntity video : videoList) {
-		    System.out.println(video.getName());
-		}
+	public String index(Model model, Authentication authentication) {
 		model.addAttribute("videos", videoService.getVideos());
+		model.addAttribute("authentication", authentication);
 		return "index";
 	}	
 	
@@ -56,7 +60,6 @@ public class HomeController {
 	
 	@PostMapping("/delete/videos/{videoId}")
 	public String deleteVideo(@PathVariable Long videoId) {
-		System.out.println("In postmapping");
 		videoService.delete(videoId);
 		return "redirect:/";
 	}
