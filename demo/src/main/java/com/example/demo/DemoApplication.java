@@ -11,8 +11,8 @@ import jakarta.annotation.PostConstruct;
 @SpringBootApplication
 public class DemoApplication {
 	
-	@Autowired
-	private VideoRepository repository;
+	//@Autowired
+	//private VideoRepository repository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -20,9 +20,9 @@ public class DemoApplication {
 	
 	@PostConstruct
 	void initDatabase() {
-		repository.save(new VideoEntity("alice", "Need HELP with your SPRING BOOT 3 App?", "SPRING BOOT 3 will only speed things up and make it"));
-		repository.save(new VideoEntity("alice", "Don't do THIS to your own CODE!", "As a pro developer, never ever EVER do this to yourn code. Because you'll ultimately be doing it to YOURSELF!"));
-		repository.save(new VideoEntity("bob", "SECRETS to fix BROKEN CODE!", "Discover ways to not only debug your code, but to regain your confidence and get back in the game as a software developer."));
+		// repository.save(new VideoEntity("alice", "Need HELP with your SPRING BOOT 3 App?", "SPRING BOOT 3 will only speed things up and make it"));
+		// repository.save(new VideoEntity("alice", "Don't do THIS to your own CODE!", "As a pro developer, never ever EVER do this to yourn code. Because you'll ultimately be doing it to YOURSELF!"));
+		// repository.save(new VideoEntity("bob", "SECRETS to fix BROKEN CODE!", "Discover ways to not only debug your code, but to regain your confidence and get back in the game as a software developer."));
 	}
 
 	/*
