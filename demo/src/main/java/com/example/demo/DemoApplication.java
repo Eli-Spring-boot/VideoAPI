@@ -17,24 +17,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 @EnableConfigurationProperties(AppConfig.class)
 public class DemoApplication {
 	
-	//@Autowired
-//	private VideoRepository repository;
-	interface GrantedAuthorityCnv extends Converter<String, GrantedAuthority> {}
-
-	@Bean
-	@ConfigurationPropertiesBinding
-	GrantedAuthorityCnv converter() {
-		return SimpleGrantedAuthority::new;
-	}
-
+	@Autowired
+	private VideoRepository repository;
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 	@PostConstruct
 	void initDatabase() {
-//		 repository.save(new VideoEntity("alice", "Need HELP with your SPRING BOOT 3 App?", "SPRING BOOT 3 will only speed things up and make it"));
-//		 repository.save(new VideoEntity("alice", "Don't do THIS to your own CODE!", "As a pro developer, never ever EVER do this to yourn code. Because you'll ultimately be doing it to YOURSELF!"));
-//		 repository.save(new VideoEntity("bob", "SECRETS to fix BROKEN CODE!", "Discover ways to not only debug your code, but to regain your confidence and get back in the game as a software developer."));
+		 repository.save(new VideoEntity("alice", "Video 1 (Can be deleted by only Alice)", "SPRING BOOT 3 will only speed things up and make it"));
+		 repository.save(new VideoEntity("bob", "Video 2 (Can be deleted by only bob)", "As a pro developer, never ever EVER do this to yourn code. Because you'll ultimately be doing it to YOURSELF!"));
+		 repository.save(new VideoEntity("admin", "Video 3 (Can be deleted by only admin)", "Discover ways to not only debug your code, but to regain your confidence and get back in the game as a software developer."));
 	}
 
 	/*
