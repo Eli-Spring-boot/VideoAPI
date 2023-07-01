@@ -21,13 +21,8 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-	CommandLineRunner initUsers(UserManagementRepository repository) {
-		return args->{
-			repository.save(new UserAccount("alice", "password", "ROLE_USER"));
-			repository.save(new UserAccount("bob", "password", "ROLE_USER"));
-			repository.save(new UserAccount("user","password","ROLE_USER"));
-			repository.save(new UserAccount("admin","password","ROLE_ADMIN"));
-		};
+	CommandLineRunner initUsers(UserManagementRepository repository, AppConfig appConfig) {
+		return args -> repository.saveAll(appConfig.users());
 	}
 	
 	@Bean

@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.Arrays;
 import java.util.List;
 
+import jakarta.inject.Inject;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class HomeController {
 	private final VideoService videoService;
-	
+	@Inject
+	private  AppConfig appConfig;
 	public HomeController(VideoService videoService) {
 		this.videoService = videoService;
+		this.appConfig = appConfig;
 	}
 	/*22
 	@GetMapping
@@ -30,6 +33,8 @@ public class HomeController {
 	public String index(Model model, Authentication authentication) {
 		model.addAttribute("videos", videoService.getVideos());
 		model.addAttribute("authentication", authentication);
+		model.addAttribute("header", appConfig.header());
+		model.addAttribute("intro", appConfig.intro());
 		return "index";
 	}	
 	
